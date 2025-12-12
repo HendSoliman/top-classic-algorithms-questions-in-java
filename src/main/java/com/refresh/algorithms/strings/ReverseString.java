@@ -5,22 +5,24 @@ public final class ReverseString {
     private ReverseString() {
     }
 
-    /** In-place reverse for char[] (O(1) extra memory). */
+    /**
+     * In-place reverse for char[] (O(1) extra memory).
+     */
     public static void reverseInPlace(char[] s) {
         int left = 0;
         int right = s.length - 1;
 
         while (left < right) {
             char tmp = s[left];
-            s[left] = s[right];
-            s[right] = tmp;
+            s[left++] = s[right];
+            s[right--] = tmp;
 
-            left++;
-            right--;
         }
     }
 
-    /** Reverse a String assuming simple char-based reversal (ASCII-safe, not emoji-safe). */
+    /**
+     * Reverse a String assuming simple char-based reversal (ASCII-safe, not emoji-safe).
+     */
     public static String reverseAscii(String input) {
         if (input == null) return null;
 
@@ -33,7 +35,9 @@ public final class ReverseString {
         return result.toString();
     }
 
-    /** Unicode-safe reverse using code points (handles emojis & surrogate pairs correctly). */
+    /**
+     * Unicode-safe reverse using code points (handles emojis & surrogate pairs correctly).
+     */
     public static String reverseUnicode(String input) {
         if (input == null) return null;
 
@@ -44,5 +48,10 @@ public final class ReverseString {
             cps[r] = tmp;
         }
         return new String(cps, 0, cps.length);
+        //new String(
+        //    cps,        // source array of Unicode characters
+        //    0,          // start from index 0
+        //    cps.length  // take all elements
+        //);
     }
 }
